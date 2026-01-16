@@ -534,6 +534,23 @@
         flex-wrap: wrap;
         gap: 0.5rem;
         }
+        /* Project bullet list styling */
+        .card ul {
+            margin-left: 2.5rem;          /* more indentation */
+            margin-top: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);     /* match paragraph text */
+        }
+        
+        .card ul li {
+            margin-bottom: 0.6rem;
+            line-height: 1.6;
+        }
+        
+        /* Optional: nicer bullet color without changing text color */
+        .card ul li::marker {
+            color: var(--primary);
+        }
 </style>
 
 </head>
