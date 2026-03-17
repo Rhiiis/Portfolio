@@ -536,10 +536,10 @@
         }
         /* Project bullet list styling */
         .card ul {
-            margin-left: 2.5rem;          /* more indentation */
+            margin-left: 2.5rem;
             margin-top: 0.75rem;
             margin-bottom: 1rem;
-            color: var(--text-muted);     /* match paragraph text */
+            color: var(--text-muted);
         }
         
         .card ul li {
@@ -547,9 +547,13 @@
             line-height: 1.6;
         }
         
-        /* Optional: nicer bullet color without changing text color */
         .card ul li::marker {
             color: var(--primary);
+        }
+
+        /* Full-width project card (first two) */
+        .card-full {
+            grid-column: 1 / -1;
         }
 </style>
 
@@ -594,89 +598,75 @@
             </div>
         </div>
         <div class="card" style="margin-top: 2rem;">
-            <p style="margin-top: 1rem;"> I’m a Computer Science major with a minor in Economic Data Analysis and an international student who brings a multicultural, global perspective to technology and data-driven problem solving. Fluent in four languages, I enjoy bridging technical expertise with clear communication to create solutions that are both effective and human-centered.</p>
-            <p>My interests center on data analysis, machine learning, and ethical technology, with a strong focus on issues such as bias, privacy, and social impact in AI systems. I’m driven by research that asks not only what technology can do, but what it should do. Alongside my analytical work, I have experience in IT support, teaching, and quantitative research, which has strengthened my ability to translate complex data into actionable insights. I’m currently seeking data analyst opportunities where I can combine analytical rigor with responsible innovation. I also have interest in front end and UI/UX research, as I can't resist adding an aesthetic touch to anything I create.</p>
+            <p style="margin-top: 1rem;"> I'm a Computer Science major with a minor in Economic Data Analysis and an international student who brings a multicultural, global perspective to technology and data-driven problem solving. Fluent in four languages, I enjoy bridging technical expertise with clear communication to create solutions that are both effective and human-centered.</p>
+            <p>My interests center on data analysis, machine learning, and ethical technology, with a strong focus on issues such as bias, privacy, and social impact in AI systems. I'm driven by research that asks not only what technology can do, but what it should do. Alongside my analytical work, I have experience in IT support, teaching, and quantitative research, which has strengthened my ability to translate complex data into actionable insights. I'm currently seeking data analyst opportunities where I can combine analytical rigor with responsible innovation. I also have interest in front end and UI/UX research, as I can't resist adding an aesthetic touch to anything I create.</p>
         </div>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
 
-<div class="grid">
-    
-   <div class="card" style="display: block; gap: 1.5rem;">
-
-    <video autoplay loop muted playsinline style="width: 100%; min-width: 400px; height: auto; border-radius: 8px;">
-        <source src="Dashboard.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div style="margin-top: 1rem;">
-        <h3>Retail Sales Data Analysis Dashboard</h3>
-
-        <p>Analyze retail sales data to uncover trends, identify top-performing regions, and highlight profitable product categories. This project involved creating an interactive dashboard in Excel to provide actionable business insights.</p>
-
-        <p><strong>Objective:</strong> Create an Interactive Dashboard and analyze retail sales data to identify trends, top-performing regions, and profitable product categories.</p>
-
-        <p><strong>Key Analysis:</strong></p>
-        <ul>
-            <li>Regional sales performance</li>
-            <li>Category profitability</li>
-            <li>Monthly sales trends</li>
-            <li>Segment spending</li>
-        </ul>
-
-        <p><strong>Key Insights:</strong></p>
-        <ul>
-            <li>West region generated the highest total sales.</li>
-            <li>Technology category had the highest profit margins.</li>
-            <li>Sales peak during the fall season (October to December) with a spike during March. Otherwise, sales remain consistent at around 150,000.</li>
-        </ul>
-
-        <p><strong>Skills Demonstrated:</strong></p>
-        <ul>
-            <li>Data cleaning</li>
-            <li>Pivot table analysis</li>
-            <li>Business insight generation</li>
-            <li>Dashboard creation</li>
-        </ul>
-
-        <div class="tags">
-            <span class="tag">Excel</span>
-            <span class="tag">Pivot Tables</span>
-            <span class="tag">Data Cleaning</span>
-            <span class="tag">Data Visualization</span>
-            <span class="tag">Dashboard</span>
-            <span class="tag">Business Insights</span>
-        </div>
-
-        <div class="project-links" style="gap: 1.5rem; margin-top: 1rem;">
-            <a href="https://github.com/Rhiiis/Simple-Excel-Analysis-and-Dashboarding." target="_blank" class="project-link">
-                View Project →
-            </a>
-        </div>
-    </div>
-</div>
-        
+        <!-- Projects grid: first two are full-width, rest are 2-col like research -->
         <div class="grid">
-            <div class="card" style="display: flex; gap: 1.5rem; align-items: flex-start;">
+
+            <!-- Card 1: Full width -->
+            <div class="card card-full">
+                <video autoplay loop muted playsinline style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem;">
+                    <source src="Dashboard.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Retail Sales Data Analysis Dashboard</h3>
+                <p>Analyze retail sales data to uncover trends, identify top-performing regions, and highlight profitable product categories. This project involved creating an interactive dashboard in Excel to provide actionable business insights.</p>
+                <p><strong>Objective:</strong> Create an Interactive Dashboard and analyze retail sales data to identify trends, top-performing regions, and profitable product categories.</p>
+                <p><strong>Key Analysis:</strong></p>
+                <ul>
+                    <li>Regional sales performance</li>
+                    <li>Category profitability</li>
+                    <li>Monthly sales trends</li>
+                    <li>Segment spending</li>
+                </ul>
+                <p><strong>Key Insights:</strong></p>
+                <ul>
+                    <li>West region generated the highest total sales.</li>
+                    <li>Technology category had the highest profit margins.</li>
+                    <li>Sales peak during the fall season (October to December) with a spike during March. Otherwise, sales remain consistent at around 150,000.</li>
+                </ul>
+                <p><strong>Skills Demonstrated:</strong></p>
+                <ul>
+                    <li>Data cleaning</li>
+                    <li>Pivot table analysis</li>
+                    <li>Business insight generation</li>
+                    <li>Dashboard creation</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Excel</span>
+                    <span class="tag">Pivot Tables</span>
+                    <span class="tag">Data Cleaning</span>
+                    <span class="tag">Data Visualization</span>
+                    <span class="tag">Dashboard</span>
+                    <span class="tag">Business Insights</span>
+                </div>
+                <div class="project-links" style="margin-top: 1rem;">
+                    <a href="https://github.com/Rhiiis/Simple-Excel-Analysis-and-Dashboarding." target="_blank" class="project-link">View Project →</a>
+                </div>
+            </div>
+
+            <!-- Card 2: Full width -->
+            <div class="card card-full" style="display: flex; gap: 1.5rem; align-items: flex-start;">
                 <video autoplay loop muted playsinline style="width: 30%; min-width: 250px; height: auto; border-radius: 8px; flex-shrink: 0;" onloadedmetadata="this.playbackRate = 1.2;">
                     <source src="project-management.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div style="flex: 1;">
                     <h3>Student Time Manager: Web App Proof of Concept</h3>
-        
                     <p>A student-focused productivity web application designed to help college students plan schedules, manage academic tasks, and track deadlines in a centralized platform. This project was developed as an end-to-end proof of concept that integrates product planning, UX/UI design, and real-world deployment. </p>
                     <p>I collaborated with a project team and played a key role in both project management and application development, with responsibilities including: </p>
-        
                     <ul>
                         <li>Defining product scope, timelines, and deliverables using formal project management methodologies</li>
                         <li>Creating detailed scope documentation and Gantt charts to plan milestones, manage dependencies, and assess feasibility</li>
                         <li>Designing high-fidelity UI/UX prototypes and interactive user flows in Figma</li>
                         <li>Translating project requirements into a functional interface that was deployed as a live web application in collaboration with a publisher</li>
                     </ul>
-        
                     <div class="tags">
                         <span class="tag">Product Design</span>
                         <span class="tag">UX/UI Design</span>
@@ -687,20 +677,14 @@
                         <span class="tag">Proof of Concept</span>
                         <span class="tag">MS Project</span>
                     </div>
-        
                     <div class="project-links" style="gap: 1.5rem;">
-                        <a href="https://studenttimemanager.vercel.app/home" target="_blank" class="project-link">
-                            View Live Demo →
-                        </a>
-                        <a href="https://drive.google.com/file/d/1ad58-OtCOYbjucd4z1ObzsfQqc-p-4rc/view?usp=sharing" target="_blank" class="project-link">
-                            View Project Documentation →
-                        </a>
+                        <a href="https://studenttimemanager.vercel.app/home" target="_blank" class="project-link">View Live Demo →</a>
+                        <a href="https://drive.google.com/file/d/1ad58-OtCOYbjucd4z1ObzsfQqc-p-4rc/view?usp=sharing" target="_blank" class="project-link">View Project Documentation →</a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="grid">
+            <!-- Card 3: CNN Street View -->
             <div class="card">
                 <img src="cnn-street-view.JPG" alt="CNN-Based Street View Identification" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                 <h3>CNN-Based Street View Identification</h3>
@@ -717,6 +701,7 @@
                 </div>
             </div>
 
+            <!-- Card 4: Plant Disease Detection -->
             <div class="card">
                 <img src="plant-disease.JPG" alt="Python and Flask: Plant Disease Detection" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                 <h3>Python and Flask: Plant Disease Detection</h3>
@@ -736,28 +721,8 @@
                     <a href="https://github.com/OGMrCrispy/Flask-Python-Web-Application" target="_blank" class="project-link">GitHub →</a>
                 </div>
             </div>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <img src="plant-disease.JPG" alt="Python and Flask: Plant Disease Detection" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
-                <h3>Python and Flask: Plant Disease Detection</h3>
-                <p><strong>University of Southern Mississippi</strong></p>
-                <p>Designed and deployed a full-stack ML application using Python, Flask, and TensorFlow/Keras. After benchmarking traditional algorithms in WEKA, implemented a CNN to classify plant health. Responsible for the end-to-end pipeline: from conducting literature reviews to prototyping, results documentation, and designing system architecture for image analysis.</p>
-                <div class="tags">
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">CNN</span>
-                    <span class="tag">TensorFlow/Keras</span>
-                    <span class="tag">Flask</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">WEKA</span>
-                    <span class="tag">Full-Stack</span>
-                </div>
-                <div class="project-links">
-                    <a href="https://drive.google.com/file/d/1Qm7vVW3K596lE_74vGY1SWC5t-vUHXbP/view?usp=sharing" target="_blank" class="project-link">View Project →</a>
-                    <a href="https://github.com/OGMrCrispy/Flask-Python-Web-Application" target="_blank" class="project-link">GitHub →</a>
-                </div>
-            </div>
-<div class="grid">
+
+            <!-- Card 5: Buffer Overflow -->
             <div class="card">
                 <img src="buffer-overflow.JPG" alt="Dissecting Buffer Overflow Defenses Group Project" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                 <h3>Dissecting Buffer Overflow Defenses Group Project</h3>
@@ -775,8 +740,8 @@
                     <a href="https://drive.google.com/file/d/1hd1o-GSx3us7jLQOpcGY18za_Gcb3HWg/view?usp=sharing" target="_blank" class="project-link">View Project →</a>
                 </div>
             </div>
-</div>
-<div class="grid">
+
+            <!-- Card 6: ML Cybersecurity & SQL -->
             <div class="card">
                 <img src="ml-cybersecurity-sql.JPG" alt="Personal Data experiments and Labs: ML in cybersecurity and SQL" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                 <h3>Personal Data Experiments and Labs: ML in Cybersecurity and SQL</h3>
@@ -793,8 +758,8 @@
                     <a href="https://drive.google.com/drive/folders/1yIVWZQXSKZDskHHDD80EFBEDcPhymrU6?usp=sharing" target="_blank" class="project-link">View Projects →</a>
                 </div>
             </div>
-</div>
-<div class="grid">
+
+            <!-- Card 7: UI/UX C# -->
             <div class="card">
                 <img src="UIUX-Prototype.JPG" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
                 <h3>Front end development in C# (UI/UX Design & Prototyping)</h3>
@@ -810,7 +775,8 @@
                     <a href="https://github.com/Rhiiis/MINIGAMES-resubmission-online" target="_blank" class="project-link">Github →</a>
                 </div>
             </div>
-</div>
+
+        </div>
     </section>
 
     <section id="research">
@@ -1133,3 +1099,89 @@
         <p>&copy; 2026 Rhishika Guragain. Built with HTML, CSS, and JavaScript.</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">USA CST | Available for Internships & Entry Level Opportunities</p>
     </footer>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(236, 72, 153, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(236, 72, 153, ${0.2 * (1 - dist / 100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
