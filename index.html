@@ -182,66 +182,39 @@
             </div>
         </div>
 
-        <!-- NEW Card: CO2 Time Series -->
-        <div class="card card-full">
-            <div class="img-placeholder">
-                <!-- Replace src below with your actual image path, e.g. src="co2-timeseries.jpg" -->
-                <span>📊 Add project image: replace img-placeholder div with &lt;img src="co2-timeseries.jpg"&gt;</span>
-            </div>
+        <!-- CO2 Time Series -->
+        <div class="card">
+            <img src="CO2.JPG" alt="Atmospheric CO₂ Time Series Analysis" style="width:100%;height:300px;object-fit:cover;border-radius:8px;margin-bottom:1rem;">
             <h3>Predicting Atmospheric CO₂ — Time Series Analysis of the Mauna Loa Record</h3>
-            <p><strong>MAT 482: Data Analysis · University of Southern Mississippi</strong></p>
-            <p>Analyzed 67 years (March 1958–February 2025) of monthly atmospheric CO₂ data from the NOAA Mauna Loa Observatory and forecasted the next 12 months using a sequence of increasingly refined models in R.</p>
-            <p><strong>Methodology:</strong></p>
-            <ul>
-                <li>Built a quadratic regression with 11 monthly seasonal dummy variables to capture the accelerating upward trend and annual "breathing" cycle</li>
-                <li>Applied AR(11), ARIMA(3,1,3), and SARIMA grid search to residuals, progressively removing autocorrelation</li>
-                <li>Evaluated all models using a scale-independent prediction quality metric Q</li>
-                <li>Best model (Regression + ARIMA(3,1,3)) achieved Q = 100.0000% on the held-out validation set, with a maximum monthly error of just 0.53 ppm</li>
-                <li>SARIMA grid search confirmed seasonal dummies had already handled all periodic structure</li>
-            </ul>
+            <p>Analyzed 67 years of atmospheric CO₂ data from the NOAA Mauna Loa Observatory and forecasted future concentrations using regression, ARIMA, and SARIMA time series models in R.</p>
             <div class="tags">
                 <span class="tag">R</span><span class="tag">Time Series</span><span class="tag">ARIMA</span>
-                <span class="tag">SARIMA</span><span class="tag">Regression</span><span class="tag">Forecasting</span>
-                <span class="tag">ACF Analysis</span><span class="tag">Climate Data</span>
+                <span class="tag">SARIMA</span><span class="tag">Forecasting</span>
+                <span class="tag">Climate Data</span><span class="tag">Regression</span>
             </div>
             <div class="project-links">
-                <!-- Replace the href below with your actual PowerPoint/PDF link -->
-                <a href="YOUR_POWERPOINT_LINK_HERE" target="_blank" class="project-link">📑 View Presentation →</a>
+                <a href="https://drive.google.com/file/d/1rd8YuifI0Q00MxoEJ110oRMzwqwIEckV/view?usp=sharing" target="_blank" class="project-link">View Presentation →</a>
+                <a href="https://drive.google.com/file/d/1g95-vECnPv4uI-MzgTk7m2ai6dQi_j_I/view?usp=sharing" target="_blank" class="project-link">View Paper →</a>
             </div>
         </div>
-
-        <!-- NEW Card: Plant Disease Detection (Group) -->
-        <div class="card card-full">
-            <div class="img-placeholder">
-                <!-- Replace with: <img src="plant-disease-ml.jpg" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:1rem;"> -->
-                <span>🌿 Add project image: replace img-placeholder div with &lt;img src="plant-disease-ml.jpg"&gt;</span>
-            </div>
+        
+        <!-- Plant Disease Detection -->
+        <div class="card">
+            <img src="plant-disease2.png" alt="Plant Disease Detection using ResNet-50" style="width:100%;height:300px;object-fit:cover;border-radius:8px;margin-bottom:1rem;">
             <h3>Web-Based Python Framework for Plant Disease Detection</h3>
-            <p><strong>Group Project · University of Southern Mississippi · School of Computing Sciences</strong></p>
-            <p>Full-stack ML application enabling farmers to detect crop diseases early by uploading leaf photos, receiving a real-time diagnosis powered by a ResNet-50 deep learning model.</p>
-            <p><strong>My contributions:</strong></p>
-            <ul>
-                <li><strong>ResNet-50 Model Design & Literature Review</strong> — Benchmarked architectures, justified ResNet-50 selection based on prior work achieving 98–99% accuracy on PlantVillage-style datasets. Explained skip connections and residual blocks enabling effective deep training.</li>
-                <li><strong>Transfer Learning Pipeline</strong> — Applied ImageNet-pretrained weights, fine-tuned a custom classification head (2048→512→22 classes) using the Adam optimizer with L2 regularization, ReduceLROnPlateau scheduling, and early stopping (patience=7).</li>
-                <li><strong>Full Training Loop</strong> — Trained over 30 epochs on an NVIDIA RTX 2060 (~2.5 hrs). Monitored per-epoch train/val loss and accuracy; best checkpoint saved at epoch 28 with val loss 0.0652.</li>
-                <li><strong>Training Performance</strong> — Rapid convergence: 83.9% validation accuracy by epoch 1 (transfer learning effect), surpassing the 85% target by epoch 2, reaching <strong>98.3% validation accuracy</strong> at epoch 28.</li>
-                <li><strong>Test Suite Validation</strong> — All 34 unit tests passed across dataset, inference, and training modules (runtime: ~6 min).</li>
-                <li><strong>Dataset & Preprocessing</strong> — Used the Kaggle Plant Leaves dataset (4,494 images, 22 classes, 11 species). Applied data augmentation (random flips, color jitter) to reduce overfitting.</li>
-                <li><strong>Final Model Performance</strong> — 99.71% test accuracy on 696 held-out images; macro F1 = 1.00; only 2 minor confusions (Chinar & Jatropha diseased/healthy variants).</li>
-            </ul>
+            <p>Built a full-stack deep learning application that detects crop diseases from uploaded leaf images using a ResNet-50 model with transfer learning and real-time prediction.</p>
             <div class="tags">
-                <span class="tag">Python</span><span class="tag">ResNet-50</span><span class="tag">Transfer Learning</span>
-                <span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">Flask</span>
-                <span class="tag">Computer Vision</span><span class="tag">Deep Learning</span><span class="tag">CNN</span>
+                <span class="tag">Python</span><span class="tag">ResNet-50</span><span class="tag">PyTorch</span>
+                <span class="tag">Transfer Learning</span><span class="tag">Computer Vision</span>
+                <span class="tag">Deep Learning</span><span class="tag">FastAPI</span>
             </div>
             <div class="project-links">
-                <a href="https://drive.google.com/file/d/1Qm7vVW3K596lE_74vGY1SWC5t-vUHXbP/view?usp=sharing" target="_blank" class="project-link">📄 View Report →</a>
-                <!-- Replace YOUR_APP_LINK_HERE with the deployed Flask/FastAPI app URL -->
-                <a href="YOUR_APP_LINK_HERE" target="_blank" class="project-link">🌐 Open Web App →</a>
-                <a href="https://github.com/OGMrCrispy/Flask-Python-Web-Application" target="_blank" class="project-link">💻 GitHub →</a>
+                <a href="https://drive.google.com/file/d/1Qm7vVW3K596lE_74vGY1SWC5t-vUHXbP/view?usp=sharing" target="_blank" class="project-link">View Report →</a>
+                <a href="https://drive.google.com/file/d/1kOkcZm9k-MpDcTh_tk5Gf_w0tLENQjAc/view?usp=drive_link" target="_blank" class="project-link">View Paper →</a>
+                <a href="YOUR_APP_LINK_HERE" target="_blank" class="project-link">Open Web App →</a>
+                <a href="https://github.com/s-mirza/plant-disease-detector" target="_blank" class="project-link">GitHub →</a>
             </div>
         </div>
-
         <!-- CNN Street View -->
         <div class="card">
             <img src="cnn-street-view.JPG" alt="CNN-Based Street View Identification" style="width:100%;height:300px;object-fit:cover;border-radius:8px;margin-bottom:1rem;">
