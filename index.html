@@ -26,7 +26,6 @@
     --ff-body: 'DM Sans', sans-serif;
     --ff-mono: 'DM Mono', monospace;
   }
-
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
@@ -80,14 +79,10 @@
   .btn-blue:hover { background:var(--navy2); transform:translateY(-2px); box-shadow:0 8px 24px rgba(35,85,160,0.2); }
   .btn-outline { background:transparent; color:var(--navy); border:1px solid var(--border); }
   .btn-outline:hover { border-color:var(--navy); transform:translateY(-2px); }
-
-  /* hero photo */
   .hero-photo-wrap { position:relative; }
   .hero-photo-wrap::before { content:''; position:absolute; inset:-8px; border:1px solid rgba(35,85,160,0.15); border-radius:6px; z-index:0; }
   .hero-photo-wrap::after { content:''; position:absolute; bottom:-14px; right:-14px; width:55%; height:55%; background:linear-gradient(135deg,rgba(35,85,160,0.06),rgba(184,137,42,0.06)); border-radius:6px; z-index:-1; }
   .hero-photo { width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:4px; position:relative; z-index:1; }
-
-  /* STAT ROW */
   .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:6px; overflow:hidden; margin-top:4rem; }
   .stat { background:var(--bg2); padding:1.8rem; text-align:center; border-right:1px solid var(--border); transition:background 0.2s; }
   .stat:last-child { border-right:none; }
@@ -109,100 +104,155 @@
   .chip-gold { background:rgba(184,137,42,0.06); border-color:rgba(184,137,42,0.25); color:var(--gold); }
   .chip-teal { background:rgba(26,122,110,0.06); border-color:rgba(26,122,110,0.22); color:var(--teal); }
 
-  /* ── PROJECTS CAROUSEL ── */
-  #projects { overflow: hidden; }
-  .carousel-wrap { position: relative; }
-  .carousel-track-outer {
+  /* ══════════════════════════════════════════
+     PROJECTS — full-bleed cinematic carousel
+  ══════════════════════════════════════════ */
+  #projects {
+    padding: 7rem 0 0;
+    overflow: hidden;
+  }
+  #projects .proj-header {
+    padding: 0 0 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Stage */
+  .proj-stage {
+    position: relative;
+    width: 100%;
+    background: var(--navy);
+    padding: 3.5rem 0 5rem;
+    overflow: hidden;
+  }
+  .proj-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 20% 50%, rgba(35,85,160,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(184,137,42,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Track */
+  .proj-track-outer {
     overflow-x: auto;
     overflow-y: visible;
     cursor: grab;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 1.5rem;
+    padding: 1rem 0 2rem;
   }
-  .carousel-track-outer::-webkit-scrollbar { display: none; }
-  .carousel-track-outer.grabbing { cursor: grabbing; }
-  .carousel-track {
+  .proj-track-outer::-webkit-scrollbar { display: none; }
+  .proj-track-outer.grabbing { cursor: grabbing; }
+  .proj-track {
     display: flex;
-    gap: 1.4rem;
+    gap: 2rem;
     width: max-content;
-    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    /* center start: left padding = (viewport - card) / 2 */
+    padding: 0.5rem calc(50vw - 320px) 1rem;
   }
 
-  /* Standard card */
+  /* Cards */
   .pc {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 14px;
     overflow: hidden;
-    width: 420px;
+    width: 580px;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    transition: transform 0.35s cubic-bezier(.22,.68,0,.99), box-shadow 0.35s ease, opacity 0.35s ease;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+    opacity: 0.55;
+    transform: scale(0.93) translateY(10px);
+    position: relative;
   }
-  .pc:hover { border-color: var(--blue2); box-shadow: 0 8px 32px rgba(35,85,160,0.12); transform: translateY(-4px); }
-
-  /* Wide card (retail + plant disease) */
+  .pc.active {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    box-shadow: 0 20px 70px rgba(0,0,0,0.55);
+  }
   .pc-wide { width: 760px; }
 
-  /* Media area */
+  /* Media */
   .pc-media { width: 100%; background: var(--bg3); overflow: hidden; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-  .pc-media img  { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .pc-media img  { width: 100%; height: 260px; object-fit: cover; display: block; }
   .pc-media video { width: 100%; display: block; }
-  .pc-media-tall img  { height: 340px; }
-
-  /* Two-image grid inside wide card */
-  .pc-media-duo {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    height: 320px;
-  }
+  .pc-media-tall img { height: 300px; }
+  .pc-media-duo { display: grid; grid-template-columns: 1fr 1fr; height: 280px; }
   .pc-media-duo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .pc-media-duo img:first-child { border-right: 1px solid var(--border); }
 
-  /* Side-by-side: video left, text right (time manager) */
+  /* Side layout */
   .pc-side {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 320px;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    height: 280px; border-bottom: 1px solid var(--border); flex-shrink: 0;
   }
   .pc-side video { width: 100%; height: 100%; object-fit: cover; display: block; border-right: 1px solid var(--border); }
-  .pc-side-text { padding: 1.4rem; overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-start; }
+  .pc-side-text { padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; }
 
-  /* Body / text area */
+  /* Body */
   .pc-body { padding: 1.4rem 1.6rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
-  .pc-num { font-family: var(--ff-mono); font-size: 0.62rem; color: var(--blue); letter-spacing: 0.12em; margin-bottom: 0.5rem; }
-  .pc-title { font-family: var(--ff-head); font-size: 1.05rem; color: var(--navy); margin-bottom: 0.3rem; line-height: 1.25; }
-  .pc-question { font-size: 0.82rem; color: var(--teal); font-style: italic; margin-bottom: 0.7rem; line-height: 1.45; }
-  .pc-desc { font-size: 0.86rem; color: var(--light); line-height: 1.7; margin-bottom: 0.9rem; flex: 1; }
-  .pc-phase { font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin: 0.8rem 0 0.3rem; }
-  .pc-phase-divider { border: none; border-top: 1px dashed var(--border); margin: 0.8rem 0; }
-  .insight-block { padding: 0.9rem 1.1rem; background: var(--bg2); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; border: 1px solid var(--border); border-left-color: var(--gold); margin-bottom: 0.9rem; }
+  .pc-num { font-family: var(--ff-mono); font-size: 0.62rem; color: var(--blue); letter-spacing: 0.12em; margin-bottom: 0.4rem; }
+  .pc-title { font-family: var(--ff-head); font-size: 1.1rem; color: var(--navy); margin-bottom: 0.25rem; line-height: 1.25; }
+  .pc-question { font-size: 0.82rem; color: var(--teal); font-style: italic; margin-bottom: 0.6rem; line-height: 1.45; }
+  .pc-desc { font-size: 0.86rem; color: var(--light); line-height: 1.7; margin-bottom: 0.8rem; flex: 1; }
+  .pc-phase { font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin: 0.7rem 0 0.25rem; }
+  .pc-phase-divider { border: none; border-top: 1px dashed var(--border); margin: 0.7rem 0; }
+  .insight-block { padding: 0.85rem 1rem; background: var(--bg2); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; margin-bottom: 0.8rem; }
   .insight-label { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
   .insight-text { font-size: 0.83rem; color: var(--light); line-height: 1.7; }
-  .pc-tech { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.9rem; }
+  .pc-tech { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.8rem; }
   .ptag { font-family: var(--ff-mono); font-size: 0.63rem; padding: 0.15rem 0.45rem; border-radius: 2px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); letter-spacing: 0.04em; }
-  .pc-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: auto; padding-top: 0.6rem; }
+  .pc-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: auto; padding-top: 0.5rem; }
   .proj-link { font-family: var(--ff-mono); font-size: 0.72rem; color: var(--blue); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   .proj-link:hover { color: var(--gold); }
   .proj-link::after { content: ' ↗'; }
 
-  /* Nav arrows */
-  .carousel-nav { display: flex; gap: 0.7rem; margin-top: 1.2rem; }
-  .carousel-btn {
-    width: 38px; height: 38px; border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg2);
-    color: var(--navy); font-size: 1rem;
+  /* Controls */
+  .proj-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 2rem 0 3rem;
+    background: var(--navy);
+  }
+  .proj-btn {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.07);
+    color: #fff; font-size: 1.1rem;
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: all 0.2s;
+    backdrop-filter: blur(6px);
   }
-  .carousel-btn:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .proj-btn:hover { background: var(--blue); border-color: var(--blue2); transform: scale(1.08); }
+  .proj-dots { display: flex; gap: 0.55rem; }
+  .proj-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer; transition: all 0.25s;
+  }
+  .proj-dot.active { background: #fff; transform: scale(1.3); }
+
+  /* Card index badge */
+  .pc-index-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    z-index: 2;
+  }
 
   /* RESEARCH */
   .research-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
@@ -247,7 +297,7 @@
   #contact .container { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
   .contact-head { font-family:var(--ff-head); font-size:clamp(1.7rem,3vw,2.6rem); color:var(--navy); line-height:1.2; margin-bottom:0.9rem; }
   .contact-sub { font-size:0.93rem; color:var(--muted); line-height:1.85; }
-  .contact-items { display:flex; flex-direction:column; gap:0.9rem; margin-top:0; }
+  .contact-items { display:flex; flex-direction:column; gap:0.9rem; }
   .contact-row { display:flex; align-items:center; gap:1.1rem; text-decoration:none; padding:1.1rem 1.4rem; background:var(--bg2); border:1px solid var(--border); border-radius:6px; transition:border-color 0.2s,transform 0.2s; }
   .contact-row:hover { border-color:var(--blue2); transform:translateX(4px); }
   .contact-icon { font-size:1rem; }
@@ -264,7 +314,6 @@
   .fade-up { opacity:0; animation:fadeUp 0.65s ease forwards; }
   .d1{animation-delay:0.1s} .d2{animation-delay:0.22s} .d3{animation-delay:0.34s} .d4{animation-delay:0.46s} .d5{animation-delay:0.6s}
 
-
   /* RESPONSIVE */
   @media(max-width:900px){
     .hero-inner{grid-template-columns:1fr}
@@ -275,10 +324,13 @@
     .exp-item{grid-template-columns:1fr;gap:0.4rem}
     nav{padding:0 1.2rem}
     nav ul{gap:1rem}
+    .pc { width: 85vw !important; }
+    .proj-track { padding: 0.5rem calc(50vw - 42.5vw) 1rem; }
   }
   @media(max-width:600px){
     .stat-row{grid-template-columns:1fr 1fr}
     .hide-sm{display:none}
+    .pc { width: 90vw !important; }
   }
 </style>
 </head>
@@ -322,7 +374,6 @@
         <img src="profile.jpg" alt="Rhishika Guragain" class="hero-photo">
       </div>
     </div>
-
     <div class="stat-row fade-up d5">
       <div class="stat"><span class="stat-num">3.85</span><div class="stat-label">GPA / 4.0</div></div>
       <div class="stat"><span class="stat-num">4</span><div class="stat-label">Languages Spoken</div></div>
@@ -374,217 +425,227 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS — full-bleed cinematic carousel -->
 <section id="projects">
-  <div class="container">
+  <div class="proj-header">
     <p class="section-label">Selected Work</p>
-    <h2>Projects</h2>
+    <h2 style="margin-bottom:0;">Projects</h2>
+  </div>
 
-    <div class="carousel-wrap">
-      <div class="carousel-track-outer" id="projTrack">
-        <div class="carousel-track">
+  <div class="proj-stage">
+    <div class="proj-track-outer" id="projTrack">
+      <div class="proj-track" id="projTrackInner">
 
-          <!-- P1 · Retail Dashboard — wide, video plays on load -->
-          <div class="pc pc-wide">
-            <div class="pc-media">
-              <video autoplay loop muted playsinline style="width:100%;display:block;">
-                <source src="Dashboard.mp4" type="video/mp4">
-              </video>
+        <!-- P1 · Retail Dashboard -->
+        <div class="pc" data-index="0">
+          <div class="pc-index-badge">01 / 07</div>
+          <div class="pc-media">
+            <video autoplay loop muted playsinline style="width:100%;display:block;height:260px;object-fit:cover;">
+              <source src="Dashboard.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="pc-body">
+            <div class="pc-num">01</div>
+            <div class="pc-title">Retail Sales Analysis Dashboard</div>
+            <div class="pc-question">Which regions and categories drive profit — and when?</div>
+            <div class="pc-tech">
+              <span class="ptag">Excel</span><span class="ptag">Pivot Tables</span><span class="ptag">Data Cleaning</span><span class="ptag">Dashboard</span><span class="ptag">KPI</span>
             </div>
-            <div class="pc-body">
-              <div class="pc-num">01</div>
-              <div class="pc-title">Retail Sales Analysis Dashboard</div>
-              <div class="pc-question">Which regions and categories drive profit — and when?</div>
-              <div class="pc-tech">
-                <span class="ptag">Excel</span><span class="ptag">Pivot Tables</span><span class="ptag">Data Cleaning</span><span class="ptag">Dashboard</span><span class="ptag">KPI</span>
+            <p class="pc-desc">Built an interactive Excel dashboard analyzing multi-year retail transaction data. Cleaned raw records, constructed pivot summaries, and designed visualizations surfacing actionable regional and seasonal patterns.</p>
+            <div class="insight-block">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">The West region generated the highest total revenue while Technology carried the strongest margins. Sales surge Oct–Dec with a secondary spike in March — front-load Q4 inventory planning by 6–8 weeks to reduce stockout risk during peak demand.</div>
+            </div>
+            <div class="pc-links">
+              <a href="https://github.com/Rhiiis/Simple-Excel-Analysis-and-Dashboarding." target="_blank" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- P2 · Student Time Manager -->
+        <div class="pc" data-index="1">
+          <div class="pc-index-badge">02 / 07</div>
+          <div class="pc-side">
+            <video autoplay loop muted playsinline onloadedmetadata="this.playbackRate=1.2;">
+              <source src="project-management.mp4" type="video/mp4">
+            </video>
+            <div class="pc-side-text">
+              <div class="pc-num" style="margin-bottom:0.4rem;">02</div>
+              <div class="pc-title" style="font-size:0.95rem;margin-bottom:0.3rem;">Student Time Manager</div>
+              <div class="pc-question">What does a productivity tool designed specifically for college students look like, built from scratch?</div>
+              <div class="pc-tech" style="margin-bottom:0.7rem;">
+                <span class="ptag">Figma</span><span class="ptag">UX/UI</span><span class="ptag">MS Project</span><span class="ptag">Gantt</span><span class="ptag">Web Deployment</span>
               </div>
-              <p class="pc-desc">Built an interactive Excel dashboard analyzing multi-year retail transaction data. Cleaned raw records, constructed pivot summaries, and designed visualizations surfacing actionable regional and seasonal patterns.</p>
-              <div class="insight-block">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">The West region generated the highest total revenue while Technology carried the strongest margins. Sales surge Oct–Dec with a secondary spike in March — front-load Q4 inventory planning by 6–8 weeks to reduce stockout risk during peak demand.</div>
-              </div>
-              <div class="pc-links">
-                <a href="https://github.com/Rhiiis/Simple-Excel-Analysis-and-Dashboarding." target="_blank" class="proj-link">GitHub</a>
+              <p style="font-size:0.83rem;color:var(--light);line-height:1.65;flex:1;">End-to-end productivity web app. Defined scope &amp; timelines using PM methodologies, designed high-fidelity prototypes in Figma, and shipped a functional live deployment.</p>
+              <div class="pc-links" style="margin-top:0.8rem;padding-top:0;">
+                <a href="https://studenttimemanager.vercel.app/home" target="_blank" class="proj-link">Live Demo</a>
+                <a href="https://drive.google.com/file/d/1ad58-OtCOYbjucd4z1ObzsfQqc-p-4rc/view?usp=sharing" target="_blank" class="proj-link">Documentation</a>
               </div>
             </div>
           </div>
-
-          <!-- P2 · Student Time Manager — wide, video left / text right -->
-          <div class="pc pc-wide">
-            <div class="pc-side">
-              <video autoplay loop muted playsinline onloadedmetadata="this.playbackRate=1.2;">
-                <source src="project-management.mp4" type="video/mp4">
-              </video>
-              <div class="pc-side-text">
-                <div class="pc-num" style="margin-bottom:0.4rem;">02</div>
-                <div class="pc-title" style="font-size:0.95rem;margin-bottom:0.3rem;">Student Time Manager</div>
-                <div class="pc-question">What does a productivity tool designed specifically for college students look like, built from scratch?</div>
-                <div class="pc-tech" style="margin-bottom:0.7rem;">
-                  <span class="ptag">Figma</span><span class="ptag">UX/UI</span><span class="ptag">MS Project</span><span class="ptag">Gantt</span><span class="ptag">Web Deployment</span>
-                </div>
-                <p style="font-size:0.83rem;color:var(--light);line-height:1.65;flex:1;">End-to-end productivity web app. Defined scope &amp; timelines using PM methodologies, designed high-fidelity prototypes in Figma, and shipped a functional live deployment.</p>
-                <div class="pc-links" style="margin-top:0.8rem;padding-top:0;">
-                  <a href="https://studenttimemanager.vercel.app/home" target="_blank" class="proj-link">Live Demo</a>
-                  <a href="https://drive.google.com/file/d/1ad58-OtCOYbjucd4z1ObzsfQqc-p-4rc/view?usp=sharing" target="_blank" class="proj-link">Documentation</a>
-                </div>
-              </div>
-            </div>
-            <div class="pc-body" style="padding-top:1rem;">
-              <div class="insight-block" style="margin-bottom:0;">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">Applying formal PM discipline (scope docs, Gantt charts, stakeholder definitions) to a solo project forced meaningful trade-offs. A well-documented prototype is immediately credible to stakeholders — directly applicable to research grant proposals and pitches.</div>
-              </div>
+          <div class="pc-body" style="padding-top:1rem;">
+            <div class="insight-block" style="margin-bottom:0;">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">Applying formal PM discipline (scope docs, Gantt charts, stakeholder definitions) to a solo project forced meaningful trade-offs. A well-documented prototype is immediately credible to stakeholders — directly applicable to research grant proposals and pitches.</div>
             </div>
           </div>
+        </div>
 
-          <!-- P3 · Plant Disease — wide, two images side by side, text below -->
-          <div class="pc pc-wide">
-            <div class="pc-media">
-              <div class="pc-media-duo">
-                <img src="plant-disease.JPG" alt="Plant Disease Detection — Flask + CNN">
-                <img src="plant-disease2.png" alt="ResNet-50 Pipeline">
-              </div>
-            </div>
-            <div class="pc-body">
-              <div class="pc-num">03</div>
-              <div class="pc-title">Plant Disease Detection — CNN &amp; ResNet-50</div>
-              <div class="pc-question">Can deep learning reliably diagnose crop diseases from photos to protect food security?</div>
-              <div class="pc-tech">
-                <span class="ptag">Python</span><span class="ptag">TensorFlow/Keras</span><span class="ptag">ResNet-50</span><span class="ptag">PyTorch</span><span class="ptag">FastAPI</span><span class="ptag">Flask</span><span class="ptag">WEKA</span>
-              </div>
-
-              <div class="pc-phase">Phase 1 — Python &amp; Flask</div>
-              <p class="pc-desc" style="margin-bottom:0.5rem;">Designed and deployed a full-stack ML application using Python, Flask, and TensorFlow/Keras. After benchmarking traditional algorithms in WEKA, implemented a CNN to classify plant health across multiple disease classes. Responsible for end-to-end pipeline: literature reviews, prototyping, results documentation, and system architecture for image analysis.</p>
-              <div class="pc-links" style="padding-top:0;margin-bottom:0.6rem;">
-                <a href="https://drive.google.com/file/d/1Qm7vVW3K596lE_74vGY1SWC5t-vUHXbP/view?usp=sharing" target="_blank" class="proj-link">Phase 1 Paper</a>
-                <a href="https://github.com/OGMrCrispy/Flask-Python-Web-Application" target="_blank" class="proj-link">Phase 1 GitHub</a>
-              </div>
-
-              <hr class="pc-phase-divider">
-
-              <div class="pc-phase">Phase 2 — ResNet-50 Web Framework</div>
-              <p class="pc-desc" style="margin-bottom:0.5rem;"><strong>Group Project · School of Computing Sciences, USM.</strong> Developed a deep learning framework for crop disease detection using a ResNet-50 transfer learning pipeline. Built and evaluated a real-time image classification system identifying 22 plant disease classes. Responsible for model architecture design, training pipeline, and performance evaluation.</p>
-              <div class="pc-links" style="padding-top:0;margin-bottom:0.8rem;">
-                <a href="https://drive.google.com/file/d/1kOkcZm9k-MpDcTh_pk5Gf_w0tLENQjAc/view?usp=drive_link" target="_blank" class="proj-link">Phase 2 Paper</a>
-                <a href="https://github.com/s-mirza/plant-disease-detector" target="_blank" class="proj-link">Phase 2 GitHub</a>
-              </div>
-
-              <div class="insight-block">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">ResNet-50 outperformed the baseline CNN by a large margin on held-out test data. A deployed web app lets farmers or extension workers photograph crops and get instant disease identification — reducing time-to-treatment and yield loss in resource-limited agricultural settings.</div>
-              </div>
+        <!-- P3 · Plant Disease -->
+        <div class="pc" data-index="2">
+          <div class="pc-index-badge">03 / 07</div>
+          <div class="pc-media">
+            <div class="pc-media-duo">
+              <img src="plant-disease.JPG" alt="Plant Disease Detection — Flask + CNN">
+              <img src="plant-disease2.png" alt="ResNet-50 Pipeline">
             </div>
           </div>
-
-          <!-- P4 · CO2 -->
-          <div class="pc">
-            <div class="pc-media pc-media-tall">
-              <img src="CO2.JPG" alt="CO2 Time Series Analysis">
+          <div class="pc-body">
+            <div class="pc-num">03</div>
+            <div class="pc-title">Plant Disease Detection — CNN &amp; ResNet-50</div>
+            <div class="pc-question">Can deep learning reliably diagnose crop diseases from photos to protect food security?</div>
+            <div class="pc-tech">
+              <span class="ptag">Python</span><span class="ptag">TensorFlow/Keras</span><span class="ptag">ResNet-50</span><span class="ptag">PyTorch</span><span class="ptag">FastAPI</span><span class="ptag">Flask</span><span class="ptag">WEKA</span>
             </div>
-            <div class="pc-body">
-              <div class="pc-num">04</div>
-              <div class="pc-title">Atmospheric CO₂ Forecasting — Mauna Loa Record</div>
-              <div class="pc-question">Can 67 years of climate data forecast future CO₂ levels accurately enough to inform policy?</div>
-              <div class="pc-tech">
-                <span class="ptag">R</span><span class="ptag">ARIMA</span><span class="ptag">SARIMA</span><span class="ptag">Time Series</span><span class="ptag">Regression</span><span class="ptag">Climate Data</span>
-              </div>
-              <p class="pc-desc">Analyzed NOAA's Mauna Loa Observatory dataset spanning 1958–2024 using R. Compared linear regression, ARIMA, and SARIMA models evaluated via RMSE and AIC. Produced both a formal research paper and a presentation for a general audience.</p>
-              <div class="insight-block">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">SARIMA captured long-run trend and seasonal oscillations with the lowest forecast error. Projections indicate concentrations crossing policy-relevant thresholds within the decade — quantitative evidence strengthening the case for near-term emissions targets.</div>
-              </div>
-              <div class="pc-links">
-                <a href="https://drive.google.com/file/d/1rd8YuifI0Q00MxoEJ110oRMzwqwIEckV/view?usp=sharing" target="_blank" class="proj-link">View Presentation</a>
-                <a href="https://drive.google.com/file/d/16fWYwuP3EzEmkjkqFOXyIv73KVhRf6V0/view?usp=sharing" target="_blank" class="proj-link">View Paper</a>
-              </div>
+            <div class="pc-phase">Phase 1 — Python &amp; Flask</div>
+            <p class="pc-desc" style="margin-bottom:0.5rem;">Designed and deployed a full-stack ML application using Python, Flask, and TensorFlow/Keras. After benchmarking traditional algorithms in WEKA, implemented a CNN to classify plant health across multiple disease classes.</p>
+            <div class="pc-links" style="padding-top:0;margin-bottom:0.6rem;">
+              <a href="https://drive.google.com/file/d/1Qm7vVW3K596lE_74vGY1SWC5t-vUHXbP/view?usp=sharing" target="_blank" class="proj-link">Phase 1 Paper</a>
+              <a href="https://github.com/OGMrCrispy/Flask-Python-Web-Application" target="_blank" class="proj-link">Phase 1 GitHub</a>
             </div>
-          </div>
-
-          <!-- P5 · Cybersecurity ML -->
-          <div class="pc">
-            <div class="pc-media pc-media-tall">
-              <img src="ml-cybersecurity-sql.JPG" alt="ML in Cybersecurity">
+            <hr class="pc-phase-divider">
+            <div class="pc-phase">Phase 2 — ResNet-50 Web Framework</div>
+            <p class="pc-desc" style="margin-bottom:0.5rem;"><strong>Group Project · USM.</strong> Deep learning framework identifying 22 plant disease classes. Responsible for model architecture design, training pipeline, and performance evaluation.</p>
+            <div class="pc-links" style="padding-top:0;margin-bottom:0.8rem;">
+              <a href="https://drive.google.com/file/d/1kOkcZm9k-MpDcTh_pk5Gf_w0tLENQjAc/view?usp=drive_link" target="_blank" class="proj-link">Phase 2 Paper</a>
+              <a href="https://github.com/s-mirza/plant-disease-detector" target="_blank" class="proj-link">Phase 2 GitHub</a>
             </div>
-            <div class="pc-body">
-              <div class="pc-num">05</div>
-              <div class="pc-title">ML in Cybersecurity — Phishing &amp; Spam Classification</div>
-              <div class="pc-question">How accurately can NLP and ML flag malicious communications, and which features matter most?</div>
-              <div class="pc-tech">
-                <span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">NLP</span><span class="ptag">SQL</span><span class="ptag">Sentiment Analysis</span>
-              </div>
-              <p class="pc-desc">Applied ML models and NLP techniques to classify phishing and spam data. Performed sentiment analysis and full data preprocessing pipelines. Compared multiple classifiers and conducted feature importance analysis. Includes SQL database experiments and data manipulation.</p>
-              <div class="insight-block">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">Ensemble methods paired with TF-IDF features yielded the strongest detection rates. Urgency-laden language is a robust signal — directly applicable to automated email triage at organizations handling sensitive data.</div>
-              </div>
-              <div class="pc-links">
-                <a href="https://drive.google.com/drive/folders/1yIVWZQXSKZDskHHDD80EFBEDcPhymrU6?usp=sharing" target="_blank" class="proj-link">View Projects</a>
-              </div>
+            <div class="insight-block">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">ResNet-50 outperformed the baseline CNN by a large margin. A deployed web app lets farmers photograph crops and get instant disease identification — reducing time-to-treatment in resource-limited agricultural settings.</div>
             </div>
           </div>
+        </div>
 
-          <!-- P6 · Buffer Overflow -->
-          <div class="pc">
-            <div class="pc-media pc-media-tall">
-              <img src="buffer-overflow.JPG" alt="Buffer Overflow Defenses">
+        <!-- P4 · CO2 -->
+        <div class="pc" data-index="3">
+          <div class="pc-index-badge">04 / 07</div>
+          <div class="pc-media pc-media-tall">
+            <img src="CO2.JPG" alt="CO2 Time Series Analysis">
+          </div>
+          <div class="pc-body">
+            <div class="pc-num">04</div>
+            <div class="pc-title">Atmospheric CO₂ Forecasting — Mauna Loa Record</div>
+            <div class="pc-question">Can 67 years of climate data forecast future CO₂ levels accurately enough to inform policy?</div>
+            <div class="pc-tech">
+              <span class="ptag">R</span><span class="ptag">ARIMA</span><span class="ptag">SARIMA</span><span class="ptag">Time Series</span><span class="ptag">Regression</span><span class="ptag">Climate Data</span>
             </div>
-            <div class="pc-body">
-              <div class="pc-num">06</div>
-              <div class="pc-title">Dissecting Buffer Overflow Defenses</div>
-              <div class="pc-question">How effective are Blue Team defense mechanisms against memory vulnerability attacks in C++?</div>
-              <div class="pc-tech">
-                <span class="ptag">C++</span><span class="ptag">Cybersecurity</span><span class="ptag">OWASP</span><span class="ptag">Flawfinder</span><span class="ptag">Cppcheck</span>
-              </div>
-              <p class="pc-desc">Evaluated Blue Team defense mechanisms against memory vulnerabilities in C++. Assessed code for stack smashing and heap overflows using OWASP guidelines and static analysis tools Flawfinder and Cppcheck. Documented vulnerability patterns and proposed mitigation strategies aligned with industry security standards.</p>
-              <div class="insight-block">
-                <div class="insight-label">Key Findings &amp; So What</div>
-                <div class="insight-text">Static analysis identified exploitable patterns that manual review missed. Organizations relying solely on manual code review are significantly under-defended — automated tooling should be a baseline requirement, not an optional enhancement.</div>
-              </div>
-              <div class="pc-links">
-                <a href="https://drive.google.com/file/d/1hd1o-GSx3us7jLQOpcGY18za_Gcb3HWg/view?usp=sharing" target="_blank" class="proj-link">View Project</a>
-              </div>
+            <p class="pc-desc">Analyzed NOAA's Mauna Loa Observatory dataset spanning 1958–2024 using R. Compared linear regression, ARIMA, and SARIMA models evaluated via RMSE and AIC. Produced both a formal research paper and a presentation for a general audience.</p>
+            <div class="insight-block">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">SARIMA captured long-run trend and seasonal oscillations with the lowest forecast error. Projections indicate concentrations crossing policy-relevant thresholds within the decade — quantitative evidence strengthening the case for near-term emissions targets.</div>
+            </div>
+            <div class="pc-links">
+              <a href="https://drive.google.com/file/d/1rd8YuifI0Q00MxoEJ110oRMzwqwIEckV/view?usp=sharing" target="_blank" class="proj-link">View Presentation</a>
+              <a href="https://drive.google.com/file/d/16fWYwuP3EzEmkjkqFOXyIv73KVhRf6V0/view?usp=sharing" target="_blank" class="proj-link">View Paper</a>
             </div>
           </div>
+        </div>
 
-          <!-- P7 · UI/UX C# -->
-          <div class="pc">
-            <div class="pc-media pc-media-tall">
-              <img src="UIUX-Prototype.JPG" alt="UI/UX C# Prototype">
+        <!-- P5 · Cybersecurity ML -->
+        <div class="pc" data-index="4">
+          <div class="pc-index-badge">05 / 07</div>
+          <div class="pc-media pc-media-tall">
+            <img src="ml-cybersecurity-sql.JPG" alt="ML in Cybersecurity">
+          </div>
+          <div class="pc-body">
+            <div class="pc-num">05</div>
+            <div class="pc-title">ML in Cybersecurity — Phishing &amp; Spam Classification</div>
+            <div class="pc-question">How accurately can NLP and ML flag malicious communications, and which features matter most?</div>
+            <div class="pc-tech">
+              <span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">NLP</span><span class="ptag">SQL</span><span class="ptag">Sentiment Analysis</span>
             </div>
-            <div class="pc-body">
-              <div class="pc-num">07</div>
-              <div class="pc-title">Front-End Development in C# — UI/UX Design &amp; Prototyping</div>
-              <div class="pc-question">How do you take a design from Canva prototype to deployed Windows application?</div>
-              <div class="pc-tech">
-                <span class="ptag">C#</span><span class="ptag">.NET Windows Forms</span><span class="ptag">UI/UX</span><span class="ptag">Prototyping</span><span class="ptag">Canva</span>
-              </div>
-              <p class="pc-desc">Led front-end development of Windows Forms applications. Designed prototypes in Canva then implemented them in Visual Studio using C# and .NET, bridging design intent with working software.</p>
-              <div class="pc-links">
-                <a href="https://drive.google.com/file/d/1ftKUmeIa8tvf7RjmeFy4vOKDcKA9JbrC/view?usp=sharing" target="_blank" class="proj-link">View Prototype</a>
-                <a href="https://github.com/Rhiiis/MINIGAMES-resubmission-online" target="_blank" class="proj-link">GitHub</a>
-              </div>
+            <p class="pc-desc">Applied ML models and NLP techniques to classify phishing and spam data. Performed sentiment analysis and full data preprocessing pipelines. Compared multiple classifiers and conducted feature importance analysis.</p>
+            <div class="insight-block">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">Ensemble methods paired with TF-IDF features yielded the strongest detection rates. Urgency-laden language is a robust signal — directly applicable to automated email triage at organizations handling sensitive data.</div>
+            </div>
+            <div class="pc-links">
+              <a href="https://drive.google.com/drive/folders/1yIVWZQXSKZDskHHDD80EFBEDcPhymrU6?usp=sharing" target="_blank" class="proj-link">View Projects</a>
             </div>
           </div>
+        </div>
 
-        </div><!-- /carousel-track -->
-      </div><!-- /carousel-track-outer -->
+        <!-- P6 · Buffer Overflow -->
+        <div class="pc" data-index="5">
+          <div class="pc-index-badge">06 / 07</div>
+          <div class="pc-media pc-media-tall">
+            <img src="buffer-overflow.JPG" alt="Buffer Overflow Defenses">
+          </div>
+          <div class="pc-body">
+            <div class="pc-num">06</div>
+            <div class="pc-title">Dissecting Buffer Overflow Defenses</div>
+            <div class="pc-question">How effective are Blue Team defense mechanisms against memory vulnerability attacks in C++?</div>
+            <div class="pc-tech">
+              <span class="ptag">C++</span><span class="ptag">Cybersecurity</span><span class="ptag">OWASP</span><span class="ptag">Flawfinder</span><span class="ptag">Cppcheck</span>
+            </div>
+            <p class="pc-desc">Evaluated Blue Team defense mechanisms against memory vulnerabilities in C++. Assessed code for stack smashing and heap overflows using OWASP guidelines and static analysis tools Flawfinder and Cppcheck.</p>
+            <div class="insight-block">
+              <div class="insight-label">Key Findings &amp; So What</div>
+              <div class="insight-text">Static analysis identified exploitable patterns that manual review missed. Organizations relying solely on manual code review are significantly under-defended — automated tooling should be a baseline requirement, not an optional enhancement.</div>
+            </div>
+            <div class="pc-links">
+              <a href="https://drive.google.com/file/d/1hd1o-GSx3us7jLQOpcGY18za_Gcb3HWg/view?usp=sharing" target="_blank" class="proj-link">View Project</a>
+            </div>
+          </div>
+        </div>
 
-      <div class="carousel-nav">
-        <button class="carousel-btn" id="projPrev" aria-label="Previous">←</button>
-        <button class="carousel-btn" id="projNext" aria-label="Next">→</button>
+        <!-- P7 · UI/UX C# -->
+        <div class="pc" data-index="6">
+          <div class="pc-index-badge">07 / 07</div>
+          <div class="pc-media pc-media-tall">
+            <img src="UIUX-Prototype.JPG" alt="UI/UX C# Prototype">
+          </div>
+          <div class="pc-body">
+            <div class="pc-num">07</div>
+            <div class="pc-title">Front-End Development in C# — UI/UX Design &amp; Prototyping</div>
+            <div class="pc-question">How do you take a design from Canva prototype to deployed Windows application?</div>
+            <div class="pc-tech">
+              <span class="ptag">C#</span><span class="ptag">.NET Windows Forms</span><span class="ptag">UI/UX</span><span class="ptag">Prototyping</span><span class="ptag">Canva</span>
+            </div>
+            <p class="pc-desc">Led front-end development of Windows Forms applications. Designed prototypes in Canva then implemented them in Visual Studio using C# and .NET, bridging design intent with working software.</p>
+            <div class="pc-links">
+              <a href="https://drive.google.com/file/d/1ftKUmeIa8tvf7RjmeFy4vOKDcKA9JbrC/view?usp=sharing" target="_blank" class="proj-link">View Prototype</a>
+              <a href="https://github.com/Rhiiis/MINIGAMES-resubmission-online" target="_blank" class="proj-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /proj-track -->
+    </div><!-- /proj-track-outer -->
+
+    <div class="proj-controls">
+      <button class="proj-btn" id="projPrev" aria-label="Previous">←</button>
+      <div class="proj-dots" id="projDots">
+        <div class="proj-dot active" data-i="0"></div>
+        <div class="proj-dot" data-i="1"></div>
+        <div class="proj-dot" data-i="2"></div>
+        <div class="proj-dot" data-i="3"></div>
+        <div class="proj-dot" data-i="4"></div>
+        <div class="proj-dot" data-i="5"></div>
+        <div class="proj-dot" data-i="6"></div>
       </div>
+      <button class="proj-btn" id="projNext" aria-label="Next">→</button>
     </div>
   </div>
 </section>
 
-<!-- RESEARCH — Multimedia Journalism FIRST with image -->
+<!-- RESEARCH -->
 <section id="research">
   <div class="container">
     <p class="section-label">Research &amp; Writing</p>
     <h2>Research Work</h2>
     <div class="research-grid">
-
-      <!-- 1st: Multimedia Journalism with image -->
       <div class="research-card">
         <img src="writer.JPG" alt="Multimedia Journalism Research" class="rc-img">
         <div class="rc-org">The Student Printz · USM · Feb – Apr 2025</div>
@@ -595,8 +656,6 @@
         </div>
         <a href="https://sm2media.com/35859/news/on-campus/usm-community-reacts-to-red-dye-ban/" target="_blank" class="rc-link">Read Published Article ↗</a>
       </div>
-
-      <!-- 2nd: AI & VR Ethics -->
       <div class="research-card">
         <div class="rc-org">University of Southern Mississippi · 2024</div>
         <div class="rc-title">AI &amp; VR Ethics — Bias, Privacy &amp; Societal Impact</div>
@@ -605,8 +664,6 @@
           <span class="chip chip-teal">Ethical Technology</span><span class="chip chip-teal">Policy</span><span class="chip chip-teal">Bias Mitigation</span>
         </div>
       </div>
-
-      <!-- 3rd: Hydropower -->
       <div class="research-card">
         <div class="rc-org">Unitech Hydropower · Nepal · Dec 2022 – Jul 2023</div>
         <div class="rc-title">Hydropower Project Impact Analysis</div>
@@ -615,8 +672,6 @@
           <span class="chip chip-teal">Quantitative Analysis</span><span class="chip chip-teal">Impact Assessment</span>
         </div>
       </div>
-
-      <!-- 4th: Human Rights -->
       <div class="research-card">
         <div class="rc-org">INSEC Nepal · Jun – Aug 2022</div>
         <div class="rc-title">Human Rights Documentation Research</div>
@@ -625,7 +680,6 @@
           <span class="chip chip-teal">Qualitative Research</span><span class="chip chip-teal">Documentation</span><span class="chip chip-teal">Translation</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -729,7 +783,7 @@
         <div class="skill-pills">
           <span class="pill">Excel (MOS Certified)</span><span class="pill">Pivot Tables</span>
           <span class="pill">Dashboards</span><span class="pill">Data Cleaning</span>
-          <span class="pill">Data Entry &amp; Management</span><span class="pill">Statistical Modeling</span><span class="pill">Forecasting</span>
+          <span class="pill">Statistical Modeling</span><span class="pill">Forecasting</span>
         </div>
       </div>
       <div class="skill-group">
@@ -805,21 +859,47 @@
 </footer>
 
 <script>
-  // ── Carousel ──
   const track = document.getElementById('projTrack');
-  const prevBtn = document.getElementById('projPrev');
-  const nextBtn = document.getElementById('projNext');
+  const cards = Array.from(document.querySelectorAll('.pc'));
+  const dots  = Array.from(document.querySelectorAll('.proj-dot'));
+  let current = 0;
 
-  // Scroll by roughly one card width
-  function scrollBy(dir) {
-    const card = track.querySelector('.pc');
-    const amount = card ? card.offsetWidth + 22 : 440;
-    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+  function getCardWidth(i) {
+    return cards[i] ? cards[i].offsetWidth : 580;
   }
-  prevBtn.addEventListener('click', () => scrollBy(-1));
-  nextBtn.addEventListener('click', () => scrollBy(1));
 
-  // Mouse drag
+  function scrollToCard(i, smooth = true) {
+    i = Math.max(0, Math.min(cards.length - 1, i));
+    current = i;
+
+    // Center the target card
+    const card = cards[i];
+    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+    const trackCenter = track.offsetWidth / 2;
+    track.scrollTo({ left: cardCenter - trackCenter, behavior: smooth ? 'smooth' : 'instant' });
+
+    // Active state
+    cards.forEach((c, j) => c.classList.toggle('active', j === i));
+    dots.forEach((d, j) => d.classList.toggle('active', j === i));
+  }
+
+  // Init: start on card 0 (Retail Dashboard)
+  window.addEventListener('load', () => {
+    scrollToCard(0, false);
+  });
+
+  document.getElementById('projPrev').addEventListener('click', () => scrollToCard(current - 1));
+  document.getElementById('projNext').addEventListener('click', () => scrollToCard(current + 1));
+
+  dots.forEach(d => d.addEventListener('click', () => scrollToCard(+d.dataset.i)));
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') scrollToCard(current - 1);
+    if (e.key === 'ArrowRight') scrollToCard(current + 1);
+  });
+
+  // Drag
   let isDown = false, startX, scrollLeft;
   track.addEventListener('mousedown', e => {
     isDown = true; track.classList.add('grabbing');
@@ -827,21 +907,39 @@
     scrollLeft = track.scrollLeft;
   });
   track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('grabbing'); });
-  track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
+  track.addEventListener('mouseup', e => {
+    if (!isDown) return;
+    isDown = false; track.classList.remove('grabbing');
+    // Snap to nearest card center
+    const trackCenter = track.scrollLeft + track.offsetWidth / 2;
+    let nearest = 0, minDist = Infinity;
+    cards.forEach((c, i) => {
+      const dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - trackCenter);
+      if (dist < minDist) { minDist = dist; nearest = i; }
+    });
+    scrollToCard(nearest);
+  });
   track.addEventListener('mousemove', e => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    track.scrollLeft = scrollLeft - (x - startX) * 1.1;
   });
 
-  // Scroll-reveal for other sections
+  // Touch snap
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) scrollToCard(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+
+  // Scroll-reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.research-card,.exp-item,.skill-group,.lang-card,.stat').forEach(el => {
     el.style.opacity='0'; el.style.transform='translateY(18px)';
     el.style.transition='opacity 0.5s ease, transform 0.5s ease';
